@@ -1,0 +1,14 @@
+
+defaultNamespace: fleet-demo
+
+targetCustomizations:
+
+- name: dev
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: prod
+  clusterSelector:
+    matchLabels:
+      env: prod
