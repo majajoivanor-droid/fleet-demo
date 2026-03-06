@@ -27,3 +27,13 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        command: ["/bin/sh","-c"]
+        args:
+        - |
+          envsubst < /usr/share/nginx/html/index.template.html > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'
+        volumeMounts:
+        - name: content
+          mountPath: /usr/share/nginx/html/index.template.html
+          subPath: index.template.html
+          configMap:
+            name: nginx-content

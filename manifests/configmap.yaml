@@ -4,102 +4,45 @@ metadata:
   name: nginx-content
   namespace: fleet-demo
 data:
-  index.html: |
+  index.template.html: |
     <!DOCTYPE html>
     <html>
     <head>
       <title>Fleet Multi-Cluster Platform</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
         body {
-          margin: 0;
-          font-family: Arial, sans-serif;
           background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
           color: white;
-        }
-
-        header {
-          padding: 40px;
+          font-family: Arial;
           text-align: center;
+          padding-top: 100px;
         }
-
-        h1 {
-          color: #00ffc3;
-          margin-bottom: 10px;
-        }
-
-        .container {
-          display: flex;
-          justify-content: center;
-          gap: 30px;
-          flex-wrap: wrap;
-          padding: 40px;
-        }
-
-        .card {
+        .box {
           background: rgba(255,255,255,0.05);
-          padding: 30px;
+          padding: 40px;
           border-radius: 15px;
-          width: 280px;
-          text-align: center;
-          transition: 0.3s;
-          backdrop-filter: blur(10px);
+          display: inline-block;
         }
-
-        .card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
-
         button {
+          margin-top: 20px;
           padding: 10px 20px;
           border: none;
           background: #00ffc3;
-          border-radius: 6px;
           cursor: pointer;
-          font-weight: bold;
-          transition: 0.3s;
-        }
-
-        button:hover {
-          background: #00bfa5;
-        }
-
-        footer {
-          text-align: center;
-          padding: 20px;
-          opacity: 0.6;
+          border-radius: 6px;
         }
       </style>
+      <script>
+        function loadInfo() {
+          document.getElementById("info").innerHTML =
+            "Pod: $POD_NAME<br>Node: $NODE_NAME";
+        }
+      </script>
     </head>
-    <body>
-      <header>
-        <h1>Fleet Multi-Cluster Platform</h1>
-        <p>GitOps Continuous Delivery across DEV & PROD</p>
-      </header>
-
-      <div class="container">
-        <div class="card">
-          <h3>🚀 Deployment</h3>
-          <p>Managed by Rancher Fleet</p>
-          <button onclick="alert('GitOps Active')">Status</button>
-        </div>
-
-        <div class="card">
-          <h3>☸ Kubernetes</h3>
-          <p>Highly Available Clusters</p>
-          <button onclick="alert('Cluster Healthy')">Health</button>
-        </div>
-
-        <div class="card">
-          <h3>📦 Version Control</h3>
-          <p>Automated Git Sync</p>
-          <button onclick="alert('Latest Commit Applied')">Check</button>
-        </div>
+    <body onload="loadInfo()">
+      <div class="box">
+        <h1>Fleet Multi-Cluster Demo</h1>
+        <div id="info"></div>
       </div>
-
-      <footer>
-        Platform Engineering Lab • Rancher • Fleet • Kubernetes
-      </footer>
     </body>
     </html>
