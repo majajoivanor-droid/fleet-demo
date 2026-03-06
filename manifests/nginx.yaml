@@ -18,11 +18,12 @@ spec:
         image: nginx:stable
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: content
-          mountPath: /usr/share/nginx/html/index.html
-          subPath: index.html
-      volumes:
-      - name: content
-        configMap:
-          name: nginx-content
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
