@@ -1,0 +1,29 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-content
+  namespace: fleet-demo
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Multi-Cluster Demo</title>
+      <style>
+        body { font-family: Arial; text-align:center; background:#111; color:white; }
+        h1 { color:#00ff99; }
+        button { padding:10px 20px; background:#00ff99; border:none; cursor:pointer; }
+      </style>
+      <script>
+        function showCluster() {
+          alert("This application is managed via Rancher Fleet GitOps!");
+        }
+      </script>
+    </head>
+    <body>
+      <h1>🚀 Fleet Multi-Cluster Deployment</h1>
+      <p>This application is deployed automatically to DEV and PROD clusters.</p>
+      <button onclick="showCluster()">Click Me</button>
+    </body>
+    </html>
