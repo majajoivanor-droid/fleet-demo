@@ -35,5 +35,8 @@ spec:
         - name: content
           mountPath: /usr/share/nginx/html/index.template.html
           subPath: index.template.html
-          configMap:
-            name: nginx-content
+
+      volumes:
+      - name: content
+        configMap:
+          name: nginx-content
